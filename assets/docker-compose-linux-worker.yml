@@ -1,0 +1,15 @@
+version: '3'
+
+services:
+  concourse-linux-worker:
+    image: concourse/concourse
+    command: worker
+    privileged: true
+    ports: ["2223:2222"]
+    volumes:
+      - /Users/ricardomaqueda/.concourse:/concourse
+    environment:
+      #CONCOURSE_WORK_DIR: /concourse/worker_linux
+      CONCOURSE_TSA_HOST: 172.23.38.2:2222
+      CONCOURSE_TSA_PUBLIC_KEY: /concourse/tsa_host_key.pub
+      CONCOURSE_TSA_WORKER_PRIVATE_KEY: /concourse/worker_linux_key
