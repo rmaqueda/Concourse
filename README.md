@@ -17,7 +17,7 @@ wget https://github.com/concourse/concourse/releases/download/v5.2.4/concourse-5
 mkdir -p $CONCOURSE_HOME
 mkdir $CONCOURSE_HOME/worker_macos
 mkdir $CONCOURSE_HOME/worker_linux
-cp /Users/ricardomaqueda/.concourse
+cd $CONCOURSE_HOME
 
 # Create Database
 pg_ctl -D /usr/local/var/postgres stop
@@ -27,10 +27,11 @@ pg_ctl -D /usr/local/var/postgres -l /usr/local/var/postgres/server.log start
 createdb atc && createuser concourse --pwprompt
 
 # Create Keys
+ssh-keygen -t rsa -q -N '' -f session_signing_key -m pem
 ssh-keygen -t rsa -q -N '' -f tsa_host_key -m pem
 ssh-keygen -t rsa -q -N '' -f worker_macos_key -m pem
 ssh-keygen -t rsa -q -N '' -f worker_linux_key -m pem
-ssh-keygen -t rsa -q -N '' -f session_signing_key -m pem
+
 echo worker_macos_key >> authorized_worker_keys
 echo worker_linux_key >> authorized_worker_keys
 
@@ -45,7 +46,7 @@ concourse web \
 	--postgres-host=127.0.0.1 \
 	--postgres-port=5432 \
 	--postgres-user=concourse \
-    --postgres-password=concourse
+	--postgres-password=concourse
 
 # Start macos worker
 sudo concourse worker \
