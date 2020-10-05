@@ -5,7 +5,6 @@ services:
     image: concourse/concourse
     command: worker
     privileged: true
-    ports: ["2223:2222"]
     volumes:
       - /Users/ricardomaqueda/.concourse:/concourse
     environment:
