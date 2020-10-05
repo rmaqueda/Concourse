@@ -1,7 +1,8 @@
 # Concourse on macOS
 
-Howto deploy and run Concourse on macOS natively:
+How to deploy and run Concourse on macOS natively
 
+Used version 5.2.4 of Concourse becouse from v5.2.4 to v6 I got an HTTP error when the web page is loadded.
 
 ```
 CONCOURSE_HOME=__set_home_dir__
@@ -50,10 +51,10 @@ concourse web \
 
 # Start macos worker
 sudo concourse worker \
-  --work-dir $CONCOURSE_HOME/worker_macos \
-  --tsa-host 127.0.0.1:2222 \
-  --tsa-public-key $CONCOURSE_HOME/tsa_host_key.pub \
-  --tsa-worker-private-key $CONCOURSE_HOME/worker_macos_key
+	--work-dir $CONCOURSE_HOME/worker_macos \
+	--tsa-host 127.0.0.1:2222 \
+	--tsa-public-key $CONCOURSE_HOME/tsa_host_key.pub \
+	--tsa-worker-private-key $CONCOURSE_HOME/worker_macos_key
 
 # Install and run linux worker on a Docker container
 # Create docker-compose-linux-worker.yml (see assets folder)
