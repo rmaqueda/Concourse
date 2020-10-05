@@ -17,7 +17,6 @@ wget https://github.com/concourse/concourse/releases/download/v5.2.4/concourse-5
 # Create directories
 mkdir -p $CONCOURSE_HOME
 mkdir $CONCOURSE_HOME/worker_macos
-mkdir $CONCOURSE_HOME/worker_linux
 cd $CONCOURSE_HOME
 
 # Create Database
@@ -58,6 +57,7 @@ sudo concourse worker \
 
 # Install and run linux worker on a Docker container
 # Create docker-compose-linux-worker.yml (see assets folder)
+# Replace home and web ip address
 # Creante and run container
 docker-compose -f docker-compose-linux-worker.yml up -d
 
